@@ -9,8 +9,8 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors());
 
-const movieRoutes = require('./routes/movieRoutes');
-app.use('/api/movies', movieRoutes);
+// const movieRoutes = require('./routes/movieRoutes');
+// app.use('/api/movies', movieRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server is running');

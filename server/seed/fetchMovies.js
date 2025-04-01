@@ -1,5 +1,6 @@
 require('dotenv').config();
 const db = require('../db/database');
+const fetch = require('node-fetch')
 
 const OMDB_API_KEY = process.env.OMDB_API_KEY;
 
@@ -17,4 +18,14 @@ function saveMovieToDatabase(movie) {
     '', // Behöver trailer
     movie.imdbID
   );
+}
+
+async function getMovieFromOMDb(title) {
+  const url = `http://www.omdbapi.com/?i=tt3896198&apikey=afbae1c2`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  if (data.Response === 'True') {
+    console.log(`Add to: ${data.Title}`)
+  }
 }

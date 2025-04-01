@@ -7,3 +7,11 @@ CREATE TABLE IF NOT EXISTS movies (
   trailer_url TEXT,
   omdb_id TEXT UNIQUE
 );
+
+CREATE TABLE IF NOT EXISTS showings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  movie_id INTEGER NOT NULL,
+  salon TEXT NOT NULL,
+  start_time TEXT NOT NULL,
+  FOREIGN KEY (movie_id) REFERENCES movies(id)
+);
