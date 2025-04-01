@@ -1,13 +1,10 @@
-import './styles/App.css'
-import LandingPage from './pages/LandingPage'
+import { Outlet } from "react-router-dom";
 
-function App() {
-
+export default function App() {
   return (
-    <>
-    <LandingPage />
-    </>
-  )
+    <div>
+      <h1>Min BioApp</h1>
+      <Outlet />
+    </div>
+  );
 }
-
-export default App
