@@ -3,9 +3,11 @@
 }
 
 body {
+    font-family: 'Bebas Neue', sans-serif;
     margin: 0;
     padding: 0;
-}
+} 
+
 .sign-up-container {
     display: flex;
     height: 100vh; 
@@ -40,10 +42,20 @@ input::placeholder{
     font-weight: bold;
 }
 
-.sign-up-btn{
+.sign-up{
     padding: 10px;
     border-radius: 10px;
     margin-top: 1rem;
+    border: none;
+    background-color: #222831;
+    color: white;
+}
+
+.sign-up:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05);
+    transition: ease-out 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .welcome {
@@ -195,13 +207,14 @@ input::placeholder{
 
 
 .Home-btn {
-    position: absolute; /* Positions the button relative to the page */
-    top: 1rem; /* Moves it down slightly from the top */
-    left: 1rem; /* Moves it slightly from the left */
+    position: absolute; 
+    top: 1rem; 
+    left: 1rem; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 5px; 
+    width: 3rem;
     border-radius: 8px;
     background-color: #222831;
     border: none;
@@ -212,6 +225,8 @@ input::placeholder{
 .home-link{
     text-decoration: none; 
     color: white;
+    padding: 4px 4px 0px 4px;
+    border-radius: 8px;
 }
 
 .Home-btn:hover {
@@ -219,4 +234,35 @@ input::placeholder{
     transform: scale(1.05);
     transition: ease-out 0.3s;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+.sign-in-button {
+    display: inline-block;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+.sign-in-link{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #222831;
+    border: solid 1.5px white;
+
+}
+
+.sign-in-link:hover {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05);
+    transition: ease-out 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+} 
+
+.sign-in{
+    text-decoration: none;
 }
