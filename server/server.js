@@ -1,9 +1,8 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const movieRoutes = require('./routes/movieRoutes')
-const bookingRoutes = require('./routes/bookingRoutes')
-const userRoutes = require('./routes/useRoutes')
+
+const movieRoutes = require('./routes/movieRoutes');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -12,7 +11,7 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/movies', movieRoutes)
+app.use('/api/movies', movieRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome!');

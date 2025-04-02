@@ -6,7 +6,7 @@ function getAllMovies(req, res) {
     res.json(movies);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Something has gone wrong when fetching' });
+    res.status(500).json({ error: 'Cannot retrieve movie' });
   }
 }
 
@@ -21,11 +21,24 @@ function getMovieById(req, res) {
       res.status(404).json({ error: 'Film not found' });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Server failed' });
+    res.status(500).json({ error: 'Caanot retrieve movie' });
+  }
+}
+
+function addMovie(req, res) {
+  try {
+    const movieData = req.body;
+    const newMovie = movieModel.addMovie(movieData);
+    res
+      .status(201)
+      .json({ message: 'Film tillagd', movie_id: newMovie.movie_id });
+  } catch (error) {
+    res.status(500).json({ error: 'Kunde inte lägga till film' });
   }
 }
 
 module.exports = {
   getAllMovies,
   getMovieById,
+  addMovie,
 };
