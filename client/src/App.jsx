@@ -6,8 +6,8 @@ export default function App() {
     <div>
       <Outlet />
 
-      <h1>Cinema Booking System</h1>
-      <Text />
+      {/* <h1>Cinema Booking System</h1>
+      <Text /> */}
     </div>
   );
 }
