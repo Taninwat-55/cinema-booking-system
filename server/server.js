@@ -1,6 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const movieRoutes = require('./routes/movieRoutes')
+const bookingRoutes = require('./routes/bookingRoutes')
+const userRoutes = require('./routes/useRoutes')
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -9,13 +12,12 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors());
 
-// const movieRoutes = require('./routes/movieRoutes');
-// app.use('/api/movies', movieRoutes);
+app.use('/api/movies', movieRoutes)
 
 app.get('/', (req, res) => {
-  res.send('Server is running');
+  res.send('Welcome!');
 });
 
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
