@@ -191,3 +191,32 @@ input::placeholder{
     transition: ease-out 0.3s;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+
+
+.Home-btn {
+    position: absolute; /* Positions the button relative to the page */
+    top: 1rem; /* Moves it down slightly from the top */
+    left: 1rem; /* Moves it slightly from the left */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #222831;
+    border: none;
+    cursor: pointer;
+}
+
+
+.home-link{
+    text-decoration: none; 
+    color: white;
+}
+
+.Home-btn:hover {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05);
+    transition: ease-out 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

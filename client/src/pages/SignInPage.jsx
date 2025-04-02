@@ -12,6 +12,12 @@ export default function SignInPage() {
         <button className="sign-in">Sign In</button>
         <h2>Other</h2>
 
+        <div className="Home-btn">
+          <Link to="/" className="home-link">
+            Home
+          </Link>
+        </div>
+
         <div className="SVG-container">
           <svg
             className="google-svg"

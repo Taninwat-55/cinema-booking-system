@@ -12,6 +12,12 @@ export default function SignUpPage() {
         <button className="sign-up-btn">Sign Up</button>
         <h2>OTHER</h2>
 
+        <div className="Home-btn">
+          <Link to="/" className="home-link">
+            Home
+          </Link>
+        </div>
+
         <div className="SVG-container">
           <svg
             className="google-svg"
@@ -73,11 +79,6 @@ export default function SignUpPage() {
           ENTER YOUR DETAILS AND EMBARK ON YOUR CINEMATIC JOURNEY WITH US.
         </h2>
         <Link to="/sign-in">LOG IN</Link>
-      </div>
-      <div className="Home-btn">
-        <Link to="/" className="home-link">
-          Home
-        </Link>
       </div>
     </div>
   );
