@@ -26,12 +26,11 @@ export default function LandingPage() {
   const handleSortChange = (e) => {
     setSortPrice(e.target.value);
   };
-    const sortedMovies = filteredMovies.sort((a, b) => {
-      const priceA = a.length_minutes || 0;
-      const priceB = b.length_minutes || 0;
-      return sortPrice === "asc" ? priceA - priceB : priceB - priceA;
-    });
-  
+  const sortedMovies = filteredMovies.sort((a, b) => {
+    const priceA = new Date(a.price);
+    const priceB = new Date(b.price);
+    return sortPrice === "asc" ? priceA - priceB : priceB - priceA;
+  });
 
   return (
     <div>
