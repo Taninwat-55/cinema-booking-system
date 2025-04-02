@@ -6,7 +6,13 @@ const OMDB_API_KEY = process.env.OMDB_API_KEY;
 console.log('API Key:', OMDB_API_KEY);
 
 // Lista på IMDb-ID:n – du kan byta ut dessa till dina egna
-const imdbIds = ['1', '2', '3', '4', 'tt0109830'];
+const imdbIds = [
+  'tt0111161',
+  'tt0068646',
+  'tt0468569',
+  'tt1375666',
+  'tt0109830',
+];
 
 // Funktion för att hämta data från OMDb
 function fetchMovie(imdbId) {

@@ -23,5 +23,9 @@
   "homepage": "https://github.com/Taninwat-55/cinema-booking-system#readme",
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "dotenv": "^16.4.7"
   }
 }

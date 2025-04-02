@@ -1,8 +1,11 @@
 const fs = require('fs');
+const path = require('path');
 const db = require('./db/database');
 
-// Läs in SQL-skriptet
-const schema = fs.readFileSync('./db/schema.sql', 'utf-8');
+const schema = fs.readFileSync(
+  path.join(__dirname, 'db', 'schema.sql'),
+  'utf-8'
+);
 
 try {
   db.exec(schema);
