@@ -74,6 +74,11 @@ export default function SignUpPage() {
         </h2>
         <Link to="/sign-in">LOG IN</Link>
       </div>
+      <div className="Home-btn">
+        <Link to="/" className="home-link">
+          Home
+        </Link>
+      </div>
     </div>
   );
 }
