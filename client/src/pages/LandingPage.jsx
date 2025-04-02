@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export default function LandingPage() {
   return (
     <div>
-      <h1>Landing Page</h1>
+      <h1>The PawnStorm cinema</h1>
       <Link className="sign-in-btn" to="/sign-in">
         Sign In
       </Link>
