@@ -22,7 +22,41 @@ function MovieDetailPage() {
   return (
     <div className="movie-detail-page">
       <h1>{movie.title}</h1>
-      <p>{movie.description}</p>
+
+      {movie.poster_url && (
+        <img
+          src={movie.poster_url}
+          alt={`Poster för ${movie.title}`}
+        />
+      )}
+      {movie.trailer_url && (
+        <p>
+          <a
+            href={movie.trailer_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ▶️ Se trailer
+          </a>
+        </p>
+      )}
+
+      <p>
+        <strong>Regissör:</strong> {movie.director}
+      </p>
+      <p>
+        <strong>Genre:</strong> {movie.genre}
+      </p>
+      <p>
+        <strong>Längd:</strong> {movie.length_minutes} min
+      </p>
+      <p>
+        <strong>Utgivningsår:</strong> {movie.release_year}
+      </p>
+
+      <p>
+        <strong>Beskrivning:</strong> {movie.description}
+      </p>
 
       <h2>Visningar</h2>
       {showings.length > 0 ? (
