@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+.navbar-section-container {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5%;
+  background: linear-gradient(
+    to right,
+    silver 60%,
+    #a0a0a0 70%,
+    #808080 80%,
+    #606060 90%,
+    #404040 100%
+  );
+}
+
+.return-icon-container {
+  height: 100%;
+  width: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.return-icon {
+  height: 30%;
+  width: 30%;
+  color: white;
+}
+
+.navbar-links-container {
+  height: 100%;
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+}
+
+.links-container {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.links-container a {
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  font-size: 35px;
+  color: white;
+}
+
+.profile-account-container {
+  height: 100%;
+  width: 28%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-account-wrapper {
+  height: 100%;
+  width: 45%;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: flex-start;
+}
+
+.profile-account-icon-container {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-account-icon {
+  height: 60px;
+  width: 60px;
+  color: white;
+}
+
+.account-name-container {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.account-name-container h1 {
+  font-size: 32px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  margin-left: 5%;
+}
