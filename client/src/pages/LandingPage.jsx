@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Searchbar from '../components/Searchbar';
@@ -38,14 +37,6 @@ function LandingPage() {
         movie.release_year.toString(),
       ].some((field) => field.toLowerCase().includes(serachTerm))
     );
-    // const filtered = movies.filter(
-    //   (movie) =>
-    //     movie.title.toLowerCase().includes(serachTerm) &&
-    //     movie.genre.toLowerCase().includes(serachTerm) &&
-    //     movie.director.toLowerCase().includes(serachTerm) &&
-    //     movie.description.toLowerCase().includes(serachTerm) &&
-    //     movie.release_year.toString().includes(serachTerm)
-    // );
     setFilteredMovies(filtered);
   };
 
@@ -57,11 +48,6 @@ function LandingPage() {
       ? a.release_year - b.release_year
       : b.release_year - a.release_year;
   });
-  // const sortedMovies = filteredMovies.sort((a, b) => {
-  //   const priceA = new Date(a.price);
-  //   const priceB = new Date(b.price);
-  //   return sortPrice === "asc" ? priceA - priceB : priceB - priceA;
-  // });
 
   return (
     <div>
@@ -74,9 +60,6 @@ function LandingPage() {
         <Link className="sign-up-btn" to="/sign-up">
           Sign Up
         </Link>
-        {/* <Link className="sign-up-btn" to="/movie-detail">
-          Movie Detail
-        </Link> */}
         <Link className="sign-up-btn" to="/watchlist">
           Watchlist
         </Link>
