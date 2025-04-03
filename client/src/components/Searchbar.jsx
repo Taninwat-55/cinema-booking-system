@@ -4,7 +4,8 @@ import "../styles/Searchbar.css";
 const Searchbar = ({searchInput, handleSearch}) => {
   return (
     <div className="searchbar-container">
-      <input
+      <input 
+        className="searchbar-input"
         type="text"
         placeholder="Search..."
         value={searchInput}
