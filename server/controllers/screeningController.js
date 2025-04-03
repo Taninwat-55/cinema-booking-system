@@ -22,7 +22,20 @@ function getScreeningsForMovie(req, res) {
   }
 }
 
+function getAvailableSeatsForScreening(req, res) {
+  const screeningId = req.params.id;
+
+  try {
+    const seats = screeningModel.getAvailableSeats(screeningId);
+    res.json(seats);
+  } catch (err) {
+    console.error('❌ Fel vid hämtning av platser:', err.message);
+    res.status(500).json({ error: 'Kunde inte hämta platser' });
+  }
+}
+
 module.exports = {
   getScreeningsForMovie,
   getAllScreenings,
+  getAvailableSeatsForScreening,
 };

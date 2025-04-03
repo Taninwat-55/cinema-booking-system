@@ -35,7 +35,28 @@ function getScreeningsByMovieId(movieId) {
   return stmt.all(movieId);
 }
 
+function getAvailableSeats(screeningId) {
+  const stmt = db.prepare(`
+    SELECT 
+      s.seat_id,
+      s.row_number,
+      s.seat_number,
+      CASE 
+        WHEN bs.seat_id IS NOT NULL THEN 1 
+        ELSE 0 
+      END AS is_booked
+    FROM seats s
+    JOIN screenings sc ON s.theater_id = sc.theater_id
+    LEFT JOIN booked_seats bs ON s.seat_id = bs.seat_id AND bs.screening_id = sc.screening_id
+    WHERE sc.screening_id = ?
+    ORDER BY s.row_number, s.seat_number
+  `);
+
+  return stmt.all(screeningId);
+}
+
 module.exports = {
   getScreeningsByMovieId,
   getAllScreenings,
+  getAvailableSeats
 };
