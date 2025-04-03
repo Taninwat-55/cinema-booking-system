@@ -24,18 +24,11 @@ function MovieDetailPage() {
       <h1>{movie.title}</h1>
 
       {movie.poster_url && (
-        <img
-          src={movie.poster_url}
-          alt={`Poster för ${movie.title}`}
-        />
+        <img src={movie.poster_url} alt={`Poster för ${movie.title}`} />
       )}
       {movie.trailer_url && (
         <p>
-          <a
-            href={movie.trailer_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={movie.trailer_url} target="_blank" rel="noopener noreferrer">
             ▶️ Se trailer
           </a>
         </p>
@@ -63,7 +56,10 @@ function MovieDetailPage() {
         <ul>
           {showings.map((showing) => (
             <li key={showing.screening_id}>
-              {showing.screening_time} - {showing.theater_name} <br />
+              <Link to={`/booking/${showing.screening_id}`}>
+                🎥 {showing.screening_time} – {showing.theater_name}
+              </Link>
+              <br />
               🎟️ Vuxen: {showing.price_adult} kr | Barn: {showing.price_child}{' '}
               kr | Pensionär: {showing.price_senior} kr
             </li>
