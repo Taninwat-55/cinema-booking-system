@@ -21,7 +21,8 @@ function getMovieById(req, res) {
       res.status(404).json({ error: 'Film not found' });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Caanot retrieve movie' });
+    console.error('❌ Fel vid hämtning av film:', err.message);
+    res.status(500).json({ error: 'Cannot retrieve movie' });
   }
 }
 

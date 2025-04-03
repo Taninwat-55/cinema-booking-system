@@ -19,9 +19,19 @@ function getAllScreenings() {
 }
 
 function getScreeningsByMovieId(movieId) {
-  const stmt = db.prepare(
-    'SELECT * FROM showings WHERE movie_id = ? ORDER BY start_time'
-  );
+  const stmt = db.prepare(`
+    SELECT 
+      s.screening_id,
+      s.screening_time,
+      s.price_adult,
+      s.price_child,
+      s.price_senior,
+      t.name AS theater_name
+    FROM screenings s
+    JOIN theaters t ON s.theater_id = t.theater_id
+    WHERE s.movie_id = ?
+    ORDER BY s.screening_time
+  `);
   return stmt.all(movieId);
 }
 

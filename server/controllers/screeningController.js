@@ -14,11 +14,11 @@ function getScreeningsForMovie(req, res) {
   const movieId = req.params.id;
 
   try {
-    const showings = screeningModel.getScreeningsByMovieId(movieId);
-    res.json(showings);
+    const screenings = screeningModel.getScreeningsByMovieId(movieId);
+    res.json(screenings);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Cannot retrieve the movie' });
+    console.error('❌ Fel vid hämtning av visningar:', err.message);
+    res.status(500).json({ error: 'Kunde inte hämta visningar' });
   }
 }
 

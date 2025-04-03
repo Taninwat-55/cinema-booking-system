@@ -1,33 +1,45 @@
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import "../styles/MovieDetailsPage.css";
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import '../styles/MovieDetailsPage.css';
 
-export default function MovieDetailPage() {
+function MovieDetailPage() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [showings, setShowings] = useState([]);
+
   useEffect(() => {
-    // Add a class to the body when this page is mounted
-    document.body.classList.add("movie-detail-bg");
+    fetch(`/api/movies/${id}`)
+      .then((res) => res.json())
+      .then((data) => setMovie(data));
 
-    // Remove the class when navigating away
-    return () => {
-      document.body.classList.remove("movie-detail-bg");
-    };
-  }, []); 
+    fetch(`/api/movies/${id}/showings`)
+      .then((res) => res.json())
+      .then((data) => setShowings(data));
+  }, [id]);
+
+  if (!movie) return <p>Laddar film...</p>;
+
   return (
     <div className="movie-detail-page">
-      <div className="Home-btn">
-        <Link to="/" className="home-link">
-          <svg
-            width="24px"
-            height="24px"
-            viewBox="0 0 1024 1024"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="#ffffff"
-          >
-            <path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" />
-          </svg>
-        </Link>
-      </div>
-      <h1 className="movie-detail-title">Movie Detail</h1>
+      <h1>{movie.title}</h1>
+      <p>{movie.description}</p>
+
+      <h2>Visningar</h2>
+      {showings.length > 0 ? (
+        <ul>
+          {showings.map((showing) => (
+            <li key={showing.screening_id}>
+              {showing.screening_time} - {showing.theater_name} <br />
+              🎟️ Vuxen: {showing.price_adult} kr | Barn: {showing.price_child}{' '}
+              kr | Pensionär: {showing.price_senior} kr
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Inga visningar tillgängliga.</p>
+      )}
     </div>
   );
 }
+
+export default MovieDetailPage;
