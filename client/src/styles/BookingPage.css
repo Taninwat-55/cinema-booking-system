@@ -1,0 +1,127 @@
+/* BookingPage.css - spara i /client/src/styles/ */
+.booking-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.movie-info {
+  background-color: #f5f5f5;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.ticket-selection {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.ticket-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+}
+
+.ticket-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticket-controls button {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ticket-controls button:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.booking-summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.next-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.next-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.seat-selection {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.seat {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  text-align: center;
+}
+
+.seat.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.seat:disabled {
+  background-color: #ffdddd;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.booking-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.booking-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.complete-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.complete-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

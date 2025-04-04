@@ -5,7 +5,7 @@ import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import MovieDetailPage from './pages/MovieDetailPage';
 import BookingPage from './pages/BookingPage';
-import WatchlistPage from './pages/WachlistPage';
+import WatchlistPage from './pages/WatchlistPage';
 
 export const router = createBrowserRouter([
   {
