@@ -1,16 +1,37 @@
+import {useState} from "react"
 import { Link } from "react-router-dom";
 import Icons from "../components/Icons"
 
 export default function SignInPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignIn = async () => {
+    try {
+      const res = await fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+      alert("Inloggning lyckades!");
+    } catch (err) {
+      alert(err.message || "Något gick fel vid inloggning.");
+    }
+  }
+
   return (
     <div className="sign-in-container">
       <div className="sign-in-form">
         <h1>Sign In</h1>
         <div className="sign-in-inputs">
-          <input type="text" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button className="sign-in">Sign In</button>
+        <button className="sign-in" onClick={handleSignIn}>Sign In</button>
         <h2>Other</h2>
 
         <div className="Home-btn">
