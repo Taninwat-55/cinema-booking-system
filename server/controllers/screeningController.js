@@ -10,6 +10,22 @@ function getAllScreenings(req, res) {
   }
 }
 
+function getScreeningById(req, res) {
+  const screeningId = req.params.id;
+  
+  try {
+    const screening = screeningModel.getScreeningById(screeningId);
+    if (screening) {
+      res.json(screening);
+    } else {
+      res.status(404).json({ error: 'Visning hittades inte' });
+    }
+  } catch (err) {
+    console.error('❌ Fel vid hämtning av visning:', err.message);
+    res.status(500).json({ error: 'Kunde inte hämta visning' });
+  }
+}
+
 function getScreeningsForMovie(req, res) {
   const movieId = req.params.id;
 
@@ -38,4 +54,5 @@ module.exports = {
   getScreeningsForMovie,
   getAllScreenings,
   getAvailableSeatsForScreening,
+  getScreeningById
 };

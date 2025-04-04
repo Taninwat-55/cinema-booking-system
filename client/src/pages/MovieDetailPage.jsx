@@ -51,19 +51,31 @@ function MovieDetailPage() {
         <strong>Beskrivning:</strong> {movie.description}
       </p>
 
-      <h2>Visningar</h2>
+      <h2>Visningar:</h2>
       {showings.length > 0 ? (
         <ul>
-          {showings.map((showing) => (
-            <li key={showing.screening_id}>
-              <Link to={`/booking/${showing.screening_id}`}>
-                🎥 {showing.screening_time} – {showing.theater_name}
-              </Link>
-              <br />
-              🎟️ Vuxen: {showing.price_adult} kr | Barn: {showing.price_child}{' '}
-              kr | Pensionär: {showing.price_senior} kr
-            </li>
-          ))}
+          {showings.map((showing) => {
+            const date = new Date(showing.screening_time);
+            const formattedDate = new Intl.DateTimeFormat('sv-SE', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            }).format(date);
+
+            return (
+              <li key={showing.screening_id}>
+                <Link to={`/booking/${showing.screening_id}`}>
+                  🎥 {formattedDate} – {showing.theater_name}
+                </Link>
+                <br />
+                🎟️ Vuxen: {showing.price_adult} kr | Barn: {showing.price_child}{' '}
+                kr | Pensionär: {showing.price_senior} kr
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <p>Inga visningar tillgängliga.</p>
