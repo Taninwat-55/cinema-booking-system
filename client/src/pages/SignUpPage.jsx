@@ -1,17 +1,38 @@
+import {useState} from "react";
 import { Link } from "react-router-dom";
 import Icons from "../components/Icons";
 
-
 export default function SignUpPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); 
+
+    const handleSignUp = async () => {
+      try {
+        const res = await fetch("", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message);
+        alert("Registrering lyckades!");
+      } catch (err) {
+        alert(err.message || "Fel vid registrering.");
+      }
+    };
+
   return (
     <div className="sign-up-container">
       <div className="sign-up-form">
         <h1>Sign Up</h1>
         <div className="sign-up-inputs">
-          <input type="text" placeholder="Email" />
-          <input type="text" placeholder="Password" />
+          <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button className="sign-up">Sign Up</button>
+        <button className="sign-up" onClick={handleSignUp}>Sign Up</button>
         <h2>OTHER</h2>
 
         <div className="Home-btn">
