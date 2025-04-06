@@ -6,7 +6,7 @@ function getAllMovies() {
 }
 
 function getMovieById(id) {
-  const stmt = db.prepare('SELECT * FROM movies WHERE id is ?');
+  const stmt = db.prepare('SELECT * FROM movies WHERE movie_id = ?');
   return stmt.get(id);
 }
 

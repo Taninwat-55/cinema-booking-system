@@ -89,8 +89,8 @@ CREATE TABLE booked_seats (
 -- Data för salonger (seats_rows, columns och total ska ändras)
 INSERT INTO theaters (name, seats_rows, seats_columns, total_seats)
 VALUES 
-    ('Salong 1', 8, 10, 80),
-    ('Salong 2', 6, 8, 48);
+    ('Salong 1', 7, 10, 70),
+    ('Salong 2', 5, 10, 50);
 
 CREATE TRIGGER update_movies_timestamp 
 AFTER UPDATE ON movies
