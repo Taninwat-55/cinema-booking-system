@@ -3,6 +3,7 @@ const bookingModel = require('../models/bookingModel');
 function createBooking(req, res) {
   try {
     const bookingData = req.body;
+    const userId = req.body.user_id || null;
     
     // Validera att nödvändig data finns
     if (!bookingData.screening_id || !bookingData.tickets || !bookingData.seats || !bookingData.total_price) {
@@ -14,6 +15,9 @@ function createBooking(req, res) {
     if (totalTickets !== bookingData.seats.length) {
       return res.status(400).json({ error: 'Antalet platser matchar inte antalet biljetter' });
     }
+
+    // Sätt user_id till inloggad användare om det finns
+    bookingData.user_id = userId;
     
     // Skapa bokningen
     const result = bookingModel.createBooking(bookingData);

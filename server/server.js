@@ -8,6 +8,8 @@ const movieRoutes = require("./routes/movieRoutes");
 const screeningRoutes = require('./routes/screeningRoutes');
 const seatRoutes = require('./routes/seatRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -19,6 +21,8 @@ app.use("/api/movies", movieRoutes);
 app.use('/api/screenings', screeningRoutes);
 app.use('/api/seats', seatRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome!");
