@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "./WatchlistPage.css"; 
+import "../styles/WatchlistPage.css"; 
 
 export default function WatchlistPage() {
   const [movies, setMovies] = useState([]);
