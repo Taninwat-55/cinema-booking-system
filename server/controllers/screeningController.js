@@ -1,4 +1,5 @@
 const screeningModel = require('../models/screeningModel');
+const seatModel = require('../models/seatModel');
 
 function getAllScreenings(req, res) {
   try {
@@ -12,7 +13,7 @@ function getAllScreenings(req, res) {
 
 function getScreeningById(req, res) {
   const screeningId = req.params.id;
-  
+
   try {
     const screening = screeningModel.getScreeningById(screeningId);
     if (screening) {
@@ -42,17 +43,46 @@ function getAvailableSeatsForScreening(req, res) {
   const screeningId = req.params.id;
 
   try {
-    const seats = screeningModel.getAvailableSeats(screeningId);
-    res.json(seats);
+    console.log(`Getting seats for screening ID: ${screeningId}`);
+
+    // Try to get the seats
+    let allSeats;
+    try {
+      allSeats = seatModel.getAvailableSeatsForScreening(screeningId);
+      console.log(
+        `Retrieved ${allSeats ? allSeats.length : 0} seats from database`
+      );
+    } catch (seatErr) {
+      console.error(
+        'Error in seatModel.getAvailableSeatsForScreening:',
+        seatErr
+      );
+      return res.status(500).json({
+        error: 'Database error when getting seats',
+        details: seatErr.message,
+      });
+    }
+
+    // Return the seats data
+    res.json(allSeats);
   } catch (err) {
-    console.error('❌ Fel vid hämtning av platser:', err.message);
-    res.status(500).json({ error: 'Kunde inte hämta platser' });
+    console.error('❌ Fel vid hämtning av platser:', err);
+    res.status(500).json({
+      error: 'Kunde inte hämta platser',
+      details: err.message || 'Unknown error',
+    });
   }
+
+  // Inside getAvailableSeatsForScreening function
+  console.log(
+    'First few seats:',
+    JSON.stringify(allSeats.slice(0, 3), null, 2)
+  );
 }
 
 module.exports = {
   getScreeningsForMovie,
   getAllScreenings,
   getAvailableSeatsForScreening,
-  getScreeningById
+  getScreeningById,
 };

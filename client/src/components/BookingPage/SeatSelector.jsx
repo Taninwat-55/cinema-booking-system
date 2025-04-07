@@ -1,44 +1,57 @@
-// src/components/SeatSelector.jsx
 function SeatSelector({ 
-    availableSeats, 
-    selectedSeats, 
-    handleSeatSelection, 
-    totalTickets,
-    onGoBack,
-    onComplete
-  }) {
-    return (
-      <div className="seat-selection">
-        <h3>Välj platser</h3>
-        <p>Välj {totalTickets} platser</p>
+  availableSeats, 
+  selectedSeats, 
+  handleSeatSelection, 
+  totalTickets,
+  onGoBack,
+  onComplete
+}) {
+  // Log the available seats to help debug
+  console.log("Available seats:", availableSeats);
   
-        <div className="seat-grid">
-          {availableSeats.map((seat) => (
-            <button
-              key={seat.seat_id}
-              className={`seat ${
-                selectedSeats.includes(seat.seat_id) ? 'selected' : ''
-              }`}
-              onClick={() => handleSeatSelection(seat.seat_id)}
-              disabled={!seat.is_available}
-            >
-              Rad {seat.row_number}, Plats {seat.seat_number}
-            </button>
-          ))}
-        </div>
+  // Group seats by row to see if any are missing
+  const seatsByRow = {};
+  availableSeats.forEach(seat => {
+    if (!seatsByRow[seat.row_number]) {
+      seatsByRow[seat.row_number] = [];
+    }
+    seatsByRow[seat.row_number].push(seat.seat_number);
+  });
+  console.log("Seats by row:", seatsByRow);
   
-        <div className="booking-actions">
-          <button onClick={onGoBack}>Tillbaka</button>
+  return (
+    <div className="seat-selection">
+      <h3>Välj platser</h3>
+      <p>Välj {totalTickets} platser</p>
+
+      <div className="seat-grid">
+        {availableSeats.map((seat) => (
           <button
-            className="complete-btn"
-            onClick={onComplete}
-            disabled={selectedSeats.length !== totalTickets}
+            key={seat.seat_id}
+            className={`seat ${
+              selectedSeats.includes(seat.seat_id) ? 'selected' : ''
+            }`}
+            onClick={() => handleSeatSelection(seat.seat_id)}
+            // Check both is_available and available_for_booking
+            disabled={seat.is_available !== 1 || seat.available_for_booking !== 1}
           >
-            Slutför bokning
+            Rad {seat.row_number}, Plats {seat.seat_number}
           </button>
-        </div>
+        ))}
       </div>
-    );
-  }
-  
-  export default SeatSelector;
+
+      <div className="booking-actions">
+        <button onClick={onGoBack}>Tillbaka</button>
+        <button
+          className="complete-btn"
+          onClick={onComplete}
+          disabled={selectedSeats.length !== totalTickets}
+        >
+          Slutför bokning
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default SeatSelector;

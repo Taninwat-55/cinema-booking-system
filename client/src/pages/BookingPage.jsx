@@ -1,9 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import "../styles/BookingPage.css";
-import MovieInfo from "../components/BookingPage/MovieInfo";
-import TicketSelector from "../components/BookingPage/TicketSelector";
-import SeatSelector from "../components/BookingPage/SeatSelector";
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import '../styles/BookingPage.css';
+import MovieInfo from '../components/BookingPage/MovieInfo';
+import TicketSelector from '../components/BookingPage/TicketSelector';
+import SeatSelector from '../components/BookingPage/SeatSelector';
 
 function BookingPage() {
   const { screening_id } = useParams();
@@ -21,15 +21,15 @@ function BookingPage() {
 
   // Hämta visnings- och filminformation
   useEffect(() => {
-    document.body.style.backgroundColor = "#222831";
+    document.body.style.backgroundColor = '#222831';
 
     fetch(`/api/screenings/${screening_id}`)
       .then((res) => {
         if (!res.ok) {
-          console.error("Status:", res.status);
+          console.error('Status:', res.status);
           return res.text().then((text) => {
-            console.error("Error response:", text);
-            throw new Error("Kunde inte hämta visning");
+            console.error('Error response:', text);
+            throw new Error('Kunde inte hämta visning');
           });
         }
         return res.json();
@@ -43,22 +43,48 @@ function BookingPage() {
         setMovie(data);
       })
       .catch((error) => {
-        console.error("Fel vid hämtning av data:", error);
+        console.error('Fel vid hämtning av data:', error);
       });
     return () => {
-      document.body.style.backgroundColor = "";
+      document.body.style.backgroundColor = '';
     };
   }, [screening_id]);
 
   // Hämta tillgängliga platser
   useEffect(() => {
     fetch(`/api/screenings/${screening_id}/seats`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Server responded with status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
-        setAvailableSeats(data);
+        console.log('Received seats data:', data.slice(0, 3)); // Log first 3 seats
+
+        // Verify data has expected format
+        if (Array.isArray(data) && data.length > 0) {
+          // Check that the data has the expected properties
+          const firstSeat = data[0];
+          if (
+            firstSeat &&
+            'seat_id' in firstSeat &&
+            'row_number' in firstSeat &&
+            'seat_number' in firstSeat
+          ) {
+            setAvailableSeats(data);
+          } else {
+            console.error('Seat data missing expected properties:', firstSeat);
+            setAvailableSeats([]);
+          }
+        } else {
+          console.log('No seats data received or data is not an array');
+          setAvailableSeats([]);
+        }
       })
       .catch((err) => {
-        console.error("Fel vid hämtning av platser:", err);
+        console.error('Error fetching seats:', err);
+        setAvailableSeats([]);
       });
   }, [screening_id]);
 
@@ -91,26 +117,26 @@ function BookingPage() {
       total_price: totalPrice,
     };
 
-    fetch("/api/bookings", {
-      method: "POST",
+    fetch('/api/bookings', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(bookingData),
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Kunde inte spara bokning");
+        if (!res.ok) throw new Error('Kunde inte spara bokning');
         return res.json();
       })
       .then((data) => {
         alert(
           `Bokning slutförd! Ditt bokningsnummer är: ${data.booking_number}`
         );
-        navigate("/");
+        navigate('/');
       })
       .catch((err) => {
-        console.error("Fel vid bokning:", err);
-        alert("Något gick fel vid bokningen. Försök igen.");
+        console.error('Fel vid bokning:', err);
+        alert('Något gick fel vid bokningen. Försök igen.');
       });
   };
 
@@ -136,20 +162,20 @@ function BookingPage() {
     if (totalTickets > 0) {
       setCurrentStep(2);
     } else {
-      alert("Du måste välja minst en biljett");
+      alert('Du måste välja minst en biljett');
     }
   };
 
   if (!screening || !movie) return <p>Laddar visning...</p>;
 
   const screeningDate = new Date(screening.screening_time);
-  const formattedDate = new Intl.DateTimeFormat("sv-SE", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
+  const formattedDate = new Intl.DateTimeFormat('sv-SE', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
   }).format(screeningDate);
 
   return (
@@ -158,7 +184,11 @@ function BookingPage() {
 
       <div className="movie-info">
         {movie.poster_url && (
-          <img src={movie.poster_url} alt={`Poster för ${movie.title}`} className="booking-page-poster" />
+          <img
+            src={movie.poster_url}
+            alt={`Poster för ${movie.title}`}
+            className="booking-page-poster"
+          />
         )}
         <h2 className="theater-name">{screening.theater_name}</h2>
         <h2>{movie.title}</h2>
@@ -178,7 +208,7 @@ function BookingPage() {
             <div className="ticket-controls">
               <button
                 onClick={() =>
-                  handleTicketChange("adult", ticketCounts.adult - 1)
+                  handleTicketChange('adult', ticketCounts.adult - 1)
                 }
                 disabled={ticketCounts.adult === 0}
               >
@@ -187,7 +217,7 @@ function BookingPage() {
               <span>{ticketCounts.adult}</span>
               <button
                 onClick={() =>
-                  handleTicketChange("adult", ticketCounts.adult + 1)
+                  handleTicketChange('adult', ticketCounts.adult + 1)
                 }
               >
                 +
@@ -202,7 +232,7 @@ function BookingPage() {
             <div className="ticket-controls">
               <button
                 onClick={() =>
-                  handleTicketChange("child", ticketCounts.child - 1)
+                  handleTicketChange('child', ticketCounts.child - 1)
                 }
                 disabled={ticketCounts.child === 0}
               >
@@ -211,7 +241,7 @@ function BookingPage() {
               <span>{ticketCounts.child}</span>
               <button
                 onClick={() =>
-                  handleTicketChange("child", ticketCounts.child + 1)
+                  handleTicketChange('child', ticketCounts.child + 1)
                 }
               >
                 +
@@ -226,7 +256,7 @@ function BookingPage() {
             <div className="ticket-controls">
               <button
                 onClick={() =>
-                  handleTicketChange("senior", ticketCounts.senior - 1)
+                  handleTicketChange('senior', ticketCounts.senior - 1)
                 }
                 disabled={ticketCounts.senior === 0}
               >
@@ -235,7 +265,7 @@ function BookingPage() {
               <span>{ticketCounts.senior}</span>
               <button
                 onClick={() =>
-                  handleTicketChange("senior", ticketCounts.senior + 1)
+                  handleTicketChange('senior', ticketCounts.senior + 1)
                 }
               >
                 +
@@ -262,18 +292,55 @@ function BookingPage() {
           <p>Välj {totalTickets} platser</p>
 
           <div className="seat-grid">
-            {availableSeats.map((seat) => (
-              <button
-                key={seat.seat_id}
-                className={`seat ${
-                  selectedSeats.includes(seat.seat_id) ? "selected" : ""
-                }`}
-                onClick={() => handleSeatSelection(seat.seat_id)}
-                disabled={!seat.is_available}
-              >
-                Rad {seat.row_number}, Plats {seat.seat_number}
-              </button>
-            ))}
+            {availableSeats && availableSeats.length > 0 ? (
+              Array.from(
+                new Set(
+                  availableSeats
+                    .filter(
+                      (seat) => seat && typeof seat.row_number === 'number'
+                    )
+                    .map((seat) => seat.row_number)
+                )
+              )
+                .sort((a, b) => a - b)
+                .map((rowNum) => (
+                  <div key={`row-${rowNum}`} className="seat-row">
+                    <div className="row-label">Row {rowNum}</div>
+                    <div className="row-seats">
+                      {availableSeats
+                        .filter((seat) => seat && seat.row_number === rowNum)
+                        .sort(
+                          (a, b) => (a.seat_number || 0) - (b.seat_number || 0)
+                        )
+                        .map((seat) => {
+                          const isAvailable = seat.is_available === 1;
+                          const isAvailableForBooking =
+                            seat.available_for_booking === 1;
+                          const isSelected = selectedSeats.includes(
+                            seat.seat_id
+                          );
+
+                          return (
+                            <button
+                              key={seat.seat_id}
+                              className={`seat ${isSelected ? 'selected' : ''} 
+                              ${!isAvailable ? 'physically-unavailable' : ''}
+                              ${
+                                !isAvailableForBooking ? 'already-booked' : ''
+                              }`}
+                              onClick={() => handleSeatSelection(seat.seat_id)}
+                              disabled={!isAvailable || !isAvailableForBooking}
+                            >
+                              {seat.seat_number}
+                            </button>
+                          );
+                        })}
+                    </div>
+                  </div>
+                ))
+            ) : (
+              <p>Inga platser tillgängliga</p>
+            )}
           </div>
 
           <div className="booking-actions">
