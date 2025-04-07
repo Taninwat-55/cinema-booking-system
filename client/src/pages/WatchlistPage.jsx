@@ -92,7 +92,7 @@ export default function WatchlistPage() {
                   <span className="year">{movie.release_year}</span>
                   <span className="duration">{movie.length_minutes} min</span>
                 </div>
-                <p className="genres">
+                <p className="genres-text">
                   {movie.genre ? movie.genre.split(", ").join(", ") : "N/A"}
                 </p>
                 <button className="watchlist-btn">❤️ Watchlist</button>
@@ -115,7 +115,7 @@ export default function WatchlistPage() {
           ))}
       </div>
       <Link to="/" className="back-to-home">
-        Back to Home
+        Back to Home 
       </Link>
     </div>
   );
