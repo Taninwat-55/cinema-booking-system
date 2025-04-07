@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 //import { useParams } from "react-router-dom";
 import "../styles/WatchlistPage.css";
+import { Link } from "react-router-dom";
 
 export default function WatchlistPage() {
   const [movies, setMovies] = useState([]);
@@ -113,6 +114,9 @@ export default function WatchlistPage() {
             />
           ))}
       </div>
+      <Link to="/" className="back-to-home">
+        Back to Home
+      </Link>
     </div>
   );
 }
