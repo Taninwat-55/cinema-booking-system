@@ -6,7 +6,7 @@
   "scripts": {
     "client": "cd client && npm run dev",
     "server": "cd server && npm run dev",
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "dev": "echo 'Use two terminals: npm run client and npm run server separately'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,9 +21,6 @@
     "url": "https://github.com/Taninwat-55/cinema-booking-system/issues"
   },
   "homepage": "https://github.com/Taninwat-55/cinema-booking-system#readme",
-  "devDependencies": {
-    "concurrently": "^9.1.2"
-  },
   "dependencies": {
     "better-sqlite3": "^11.9.1",
     "dotenv": "^16.4.7"
