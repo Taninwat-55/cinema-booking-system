@@ -158,13 +158,19 @@ function BookingPage() {
 
       <div className="movie-info">
         {movie.poster_url && (
-          <img src={movie.poster_url} alt={`Poster för ${movie.title}`} className="booking-page-poster" />
+          <img
+            src={movie.poster_url}
+            alt={`Poster för ${movie.title}`}
+            className="booking-page-poster"
+          />
         )}
-        <h2 className="theater-name">{screening.theater_name}</h2>
-        <h2>{movie.title}</h2>
-        <p>
-          <strong>Tid:</strong> {formattedDate}
-        </p>
+        <div>
+          <h2 className="theater-name">{screening.theater_name}</h2>
+          <h2>{movie.title}</h2>
+          <p>
+            <strong>Tid:</strong> {formattedDate}
+          </p>
+        </div>
       </div>
 
       {currentStep === 1 && (
