@@ -37,6 +37,7 @@ function register(req, res) {
 function login(req, res) {
   try {
     const { email, password } = req.body;
+    console.log(`Försöker logga in: ${email}`);
     
     // Validera indata
     if (!email || !password) {
@@ -45,12 +46,17 @@ function login(req, res) {
     
     // Hämta användaren
     const user = authModel.getUserByEmail(email);
+    console.log('Hittad användare:', user);
+    
     if (!user) {
       return res.status(401).json({ error: 'Ogiltiga inloggningsuppgifter' });
     }
     
     // Verifiera lösenordet
     const hashedInputPassword = hashPassword(password);
+    console.log('Inmatat hashat lösenord:', hashedInputPassword);
+    console.log('Lagrat lösenord:', user.password);
+
     if (user.password !== hashedInputPassword) {
       return res.status(401).json({ error: 'Ogiltiga inloggningsuppgifter' });
     }
