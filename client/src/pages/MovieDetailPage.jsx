@@ -8,6 +8,16 @@ import MovieInformation from "../components/MovieInformation";
 import ProfileAccount from "../components/ProfileAccount";
 
 function MovieDetailPage() {
+  return (
+    <div className="movie-details-container">
+      <MovieDetailsSideBar />
+      <MovieInformation />
+      <ProfileAccount />
+    </div>
+
+    /*
+
+
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [showings, setShowings] = useState([]);
@@ -24,14 +34,10 @@ function MovieDetailPage() {
 
   if (!movie) return <p>Laddar film...</p>;
 
-  return (
-    <div className="movie-details-container">
-      <MovieDetailsSideBar />
-      <MovieInformation />
-      <ProfileAccount />
-    </div>
 
-    /*
+
+
+
     <div className="movie-detail-page">
       <h1>{movie.title}</h1>
 
