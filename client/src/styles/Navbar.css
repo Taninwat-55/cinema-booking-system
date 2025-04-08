@@ -52,23 +52,23 @@
   color: white;
 }
 
-.profile-account-container {
+.profile-account-container-navbar {
   height: 100%;
   width: 28%;
   display: flex;
   justify-content: flex-end;
 }
 
-.profile-account-wrapper {
+.profile-account-wrapper-navbar {
   height: 100%;
-  width: 45%;
+  width: 45% !important;
   display: flex;
   flex-direction: row;
   /* align-items: center; */
   justify-content: flex-start;
 }
 
-.profile-account-icon-container {
+.profile-account-icon-container-navbar {
   height: 100%;
   width: 30%;
   display: flex;

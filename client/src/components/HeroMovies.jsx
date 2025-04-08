@@ -13,26 +13,26 @@ const HeroMovies = () => {
               <div className="movie-card-image-container">
                 <img src={BatmanImage}></img>
               </div>
-              <div className="movie-name-container">
-                <div className="movie-name-wrapper">
+              <div className="movie-name-container-landing-page">
+                <div className="movie-name-wrapper-landing-page">
                   <h2>Batman</h2>
                 </div>
               </div>
-              <div className="movie-rating-container">
-                <div className="movie-rating-wrapper">
-                  <div className="imdb-box-container">
-                    <div className="imdb-box">
+              <div className="movie-rating-container-landing-page">
+                <div className="movie-rating-wrapper-landing-page">
+                  <div className="imdb-box-container-landing-page">
+                    <div className="imdb-box-landing-page">
                       <h3>imdb</h3>
                     </div>
                   </div>
-                  <div className="rating-number-container">
+                  <div className="rating-number-container-landing-page">
                     <p>7.8</p>
                   </div>
                 </div>
               </div>
 
-              <div className="movie-information-container">
-                <div className="movie-information-wrapper">
+              <div className="movie-information-container-landing-page">
+                <div className="movie-information-wrapper-landing-page">
                   <p>
                     2022 | 2h 58min | <br></br>
                     Action,Superhero
@@ -60,26 +60,26 @@ const HeroMovies = () => {
               <div className="movie-card-image-container">
                 <img src={BatmanImage}></img>
               </div>
-              <div className="movie-name-container">
-                <div className="movie-name-wrapper">
+              <div className="movie-name-container-landing-page">
+                <div className="movie-name-wrapper-landing-page">
                   <h2>Batman</h2>
                 </div>
               </div>
-              <div className="movie-rating-container">
-                <div className="movie-rating-wrapper">
-                  <div className="imdb-box-container">
-                    <div className="imdb-box">
+              <div className="movie-rating-container-landing-page">
+                <div className="movie-rating-wrapper-landing-page">
+                  <div className="imdb-box-container-landing-page">
+                    <div className="imdb-box-landing-page">
                       <h3>imdb</h3>
                     </div>
                   </div>
-                  <div className="rating-number-container">
+                  <div className="rating-number-container-landing-page">
                     <p>7.8</p>
                   </div>
                 </div>
               </div>
 
-              <div className="movie-information-container">
-                <div className="movie-information-wrapper">
+              <div className="movie-information-container-landing-page">
+                <div className="movie-information-wrapper-landing-page">
                   <p>
                     2022 | 2h 58min | <br></br>
                     Action,Superhero
@@ -107,26 +107,26 @@ const HeroMovies = () => {
               <div className="movie-card-image-container">
                 <img src={BatmanImage}></img>
               </div>
-              <div className="movie-name-container">
-                <div className="movie-name-wrapper">
+              <div className="movie-name-container-landing-page">
+                <div className="movie-name-wrapper-landing-page">
                   <h2>Batman</h2>
                 </div>
               </div>
-              <div className="movie-rating-container">
-                <div className="movie-rating-wrapper">
-                  <div className="imdb-box-container">
-                    <div className="imdb-box">
+              <div className="movie-rating-container-landing-page">
+                <div className="movie-rating-wrapper-landing-page">
+                  <div className="imdb-box-container-landing-page">
+                    <div className="imdb-box-landing-page">
                       <h3>imdb</h3>
                     </div>
                   </div>
-                  <div className="rating-number-container">
+                  <div className="rating-number-container-landing-page">
                     <p>7.8</p>
                   </div>
                 </div>
               </div>
 
-              <div className="movie-information-container">
-                <div className="movie-information-wrapper">
+              <div className="movie-information-container-landing-page">
+                <div className="movie-information-wrapper-landing-page">
                   <p>
                     2022 | 2h 58min | <br></br>
                     Action,Superhero

@@ -25,9 +25,9 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="profile-account-container">
-        <div className="profile-account-wrapper">
-          <div className="profile-account-icon-container">
+      <div className="profile-account-container-navbar">
+        <div className="profile-account-wrapper-navbar">
+          <div className="profile-account-icon-container-navbar">
             <CgProfile className="profile-account-icon" />
           </div>
 
