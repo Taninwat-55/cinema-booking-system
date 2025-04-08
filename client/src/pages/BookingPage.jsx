@@ -1,9 +1,9 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import '../styles/BookingPage.css';
-import MovieInfo from '../components/BookingPage/MovieInfo';
-import TicketSelector from '../components/BookingPage/TicketSelector';
-import SeatSelector from '../components/BookingPage/SeatSelector';
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "../styles/BookingPage.css";
+import MovieInfo from "../components/BookingPage/MovieInfo";
+import TicketSelector from "../components/BookingPage/TicketSelector";
+import SeatSelector from "../components/BookingPage/SeatSelector";
 
 function BookingPage() {
   const { screening_id } = useParams();
@@ -21,13 +21,15 @@ function BookingPage() {
 
   // Hämta visnings- och filminformation
   useEffect(() => {
+    document.body.style.backgroundColor = "#222831";
+
     fetch(`/api/screenings/${screening_id}`)
       .then((res) => {
         if (!res.ok) {
-          console.error('Status:', res.status);
+          console.error("Status:", res.status);
           return res.text().then((text) => {
-            console.error('Error response:', text);
-            throw new Error('Kunde inte hämta visning');
+            console.error("Error response:", text);
+            throw new Error("Kunde inte hämta visning");
           });
         }
         return res.json();
@@ -41,8 +43,11 @@ function BookingPage() {
         setMovie(data);
       })
       .catch((error) => {
-        console.error('Fel vid hämtning av data:', error);
+        console.error("Fel vid hämtning av data:", error);
       });
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
   }, [screening_id]);
 
   // Hämta tillgängliga platser
@@ -53,7 +58,7 @@ function BookingPage() {
         setAvailableSeats(data);
       })
       .catch((err) => {
-        console.error('Fel vid hämtning av platser:', err);
+        console.error("Fel vid hämtning av platser:", err);
       });
   }, [screening_id]);
 
@@ -86,26 +91,26 @@ function BookingPage() {
       total_price: totalPrice,
     };
 
-    fetch('/api/bookings', {
-      method: 'POST',
+    fetch("/api/bookings", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(bookingData),
     })
       .then((res) => {
-        if (!res.ok) throw new Error('Kunde inte spara bokning');
+        if (!res.ok) throw new Error("Kunde inte spara bokning");
         return res.json();
       })
       .then((data) => {
         alert(
           `Bokning slutförd! Ditt bokningsnummer är: ${data.booking_number}`
         );
-        navigate('/');
+        navigate("/");
       })
       .catch((err) => {
-        console.error('Fel vid bokning:', err);
-        alert('Något gick fel vid bokningen. Försök igen.');
+        console.error("Fel vid bokning:", err);
+        alert("Något gick fel vid bokningen. Försök igen.");
       });
   };
 
@@ -131,20 +136,20 @@ function BookingPage() {
     if (totalTickets > 0) {
       setCurrentStep(2);
     } else {
-      alert('Du måste välja minst en biljett');
+      alert("Du måste välja minst en biljett");
     }
   };
 
   if (!screening || !movie) return <p>Laddar visning...</p>;
 
   const screeningDate = new Date(screening.screening_time);
-  const formattedDate = new Intl.DateTimeFormat('sv-SE', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+  const formattedDate = new Intl.DateTimeFormat("sv-SE", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   }).format(screeningDate);
 
   return (
@@ -152,13 +157,20 @@ function BookingPage() {
       <h1>Boka biljetter</h1>
 
       <div className="movie-info">
-        <h2>{movie.title}</h2>
-        <p>
-          <strong>Tid:</strong> {formattedDate}
-        </p>
-        <p>
-          <strong>Salong:</strong> {screening.theater_name}
-        </p>
+        {movie.poster_url && (
+          <img
+            src={movie.poster_url}
+            alt={`Poster för ${movie.title}`}
+            className="booking-page-poster"
+          />
+        )}
+        <div>
+          <h2 className="theater-name">{screening.theater_name}</h2>
+          <h2>{movie.title}</h2>
+          <p>
+            <strong>Tid:</strong> {formattedDate}
+          </p>
+        </div>
       </div>
 
       {currentStep === 1 && (
@@ -167,12 +179,12 @@ function BookingPage() {
 
           <div className="ticket-type">
             <div className="ticket-info">
-              <span>👨‍🦱 Vuxna ({screening.price_adult} kr)</span>
+              <span>Vuxna ({screening.price_adult} kr)</span>
             </div>
             <div className="ticket-controls">
               <button
                 onClick={() =>
-                  handleTicketChange('adult', ticketCounts.adult - 1)
+                  handleTicketChange("adult", ticketCounts.adult - 1)
                 }
                 disabled={ticketCounts.adult === 0}
               >
@@ -181,7 +193,7 @@ function BookingPage() {
               <span>{ticketCounts.adult}</span>
               <button
                 onClick={() =>
-                  handleTicketChange('adult', ticketCounts.adult + 1)
+                  handleTicketChange("adult", ticketCounts.adult + 1)
                 }
               >
                 +
@@ -191,12 +203,12 @@ function BookingPage() {
 
           <div className="ticket-type">
             <div className="ticket-info">
-              <span>👧 Barn ({screening.price_child} kr)</span>
+              <span>Barn ({screening.price_child} kr)</span>
             </div>
             <div className="ticket-controls">
               <button
                 onClick={() =>
-                  handleTicketChange('child', ticketCounts.child - 1)
+                  handleTicketChange("child", ticketCounts.child - 1)
                 }
                 disabled={ticketCounts.child === 0}
               >
@@ -205,7 +217,7 @@ function BookingPage() {
               <span>{ticketCounts.child}</span>
               <button
                 onClick={() =>
-                  handleTicketChange('child', ticketCounts.child + 1)
+                  handleTicketChange("child", ticketCounts.child + 1)
                 }
               >
                 +
@@ -215,12 +227,12 @@ function BookingPage() {
 
           <div className="ticket-type">
             <div className="ticket-info">
-              <span>👴 Pensionärer ({screening.price_senior} kr)</span>
+              <span>Pensionärer ({screening.price_senior} kr)</span>
             </div>
             <div className="ticket-controls">
               <button
                 onClick={() =>
-                  handleTicketChange('senior', ticketCounts.senior - 1)
+                  handleTicketChange("senior", ticketCounts.senior - 1)
                 }
                 disabled={ticketCounts.senior === 0}
               >
@@ -229,7 +241,7 @@ function BookingPage() {
               <span>{ticketCounts.senior}</span>
               <button
                 onClick={() =>
-                  handleTicketChange('senior', ticketCounts.senior + 1)
+                  handleTicketChange("senior", ticketCounts.senior + 1)
                 }
               >
                 +
@@ -238,7 +250,7 @@ function BookingPage() {
           </div>
 
           <div className="booking-summary">
-            <h3>💰 Totalpris: {totalPrice} kr</h3>
+            <h3>Totalpris: {totalPrice} kr</h3>
             <button
               className="next-button"
               onClick={moveToSeatSelection}
@@ -260,12 +272,28 @@ function BookingPage() {
               <button
                 key={seat.seat_id}
                 className={`seat ${
-                  selectedSeats.includes(seat.seat_id) ? 'selected' : ''
+                  selectedSeats.includes(seat.seat_id) ? "selected" : ""
                 }`}
                 onClick={() => handleSeatSelection(seat.seat_id)}
                 disabled={!seat.is_available}
               >
-                Rad {seat.row_number}, Plats {seat.seat_number}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-armchair-icon lucide-armchair"
+                >
+                  <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
+                  <path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+                  <path d="M5 18v2" />
+                  <path d="M19 18v2" />
+                </svg>
               </button>
             ))}
           </div>
