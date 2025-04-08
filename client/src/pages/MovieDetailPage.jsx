@@ -63,7 +63,7 @@ function MovieDetailPage() {
         <strong>Beskrivning:</strong> {movie.description}
       </p>
 
-      <h2>Visningar</h2>
+      <h2>Visningar:</h2>
       {showings.length > 0 ? (
         <ul>
           {showings.map((showing) => (
