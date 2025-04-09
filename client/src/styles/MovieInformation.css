@@ -144,7 +144,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* background-color: black; */
 }
 
 .movie-genre-wrapper p {
@@ -222,6 +221,12 @@
   color: black;
 }
 
+@media screen and (max-width: 1500px) {
+  .movie-genre-wrapper {
+    width: 35%;
+  }
+}
+
 @media screen and (width: 1470px) and (height: 930px) {
   .movie-information-wrapper-image {
     height: 70%;
@@ -237,9 +242,15 @@
   }
 
   .movie-genre-wrapper {
-    width: 35%;
+    width: 40%;
   }
   .story-line-text-wrapper p {
     letter-spacing: 0px;
+  }
+}
+
+@media screen and (width: 1280px) and (height: 800px) {
+  .movie-genre-wrapper {
+    width: 45%;
   }
 }
